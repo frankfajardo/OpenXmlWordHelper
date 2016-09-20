@@ -51,10 +51,9 @@ namespace OpenXmlHelpers.Word
                 return xmlElement
                     .Descendants<FieldCode>();
 
-            var mergeFieldInnerTextStart = GetMergeFieldStartString(mergeFieldName);
             return xmlElement
                 .Descendants<FieldCode>()
-                .Where(f => f.InnerText.Contains(mergeFieldName));
+                .Where(f => f.InnerText.StartsWith(GetMergeFieldStartString(mergeFieldName)));
         }
 
         /// <summary>
@@ -67,9 +66,8 @@ namespace OpenXmlHelpers.Word
             if (mergeFields == null || mergeFields.Count() == 0)
                 return null;
 
-            var mergeFieldInnerTextStart = GetMergeFieldStartString(mergeFieldName);
             return mergeFields
-                .Where(f => f.InnerText.StartsWith(mergeFieldInnerTextStart));
+                .Where(f => f.InnerText.StartsWith(GetMergeFieldStartString(mergeFieldName)));
         }
 
         /// <summary>
