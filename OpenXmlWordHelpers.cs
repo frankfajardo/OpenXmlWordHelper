@@ -14,7 +14,6 @@ namespace OpenXmlHelpers.Word
         /// <summary>
         /// Gets merge fields contained in a document, including the header and footer sections. 
         /// </summary>
-        /// <param name="doc">The Word document to get merge fields from</param>
         /// <param name="mergeFieldName">Optional name for the merge fields to look for.</param>
         /// <returns>If a merge field name is specified, only merge fields with that name are returned. Otherwise, it returns all merge fields contained in the document.</returns>
         public static IEnumerable<FieldCode> GetMergeFields(this WordprocessingDocument doc, string mergeFieldName = null)
@@ -76,7 +75,6 @@ namespace OpenXmlHelpers.Word
         /// <summary>
         /// Gets the immediate containing paragraph of a given element.
         /// </summary>
-        /// <param name="xmlElement">The element to use as reference.</param>
         /// <returns>If the given element is a paragraph, that element is returned. Otherwise, it returns the immediate ancestor that is a paragraph, or null if none is found.</returns>
         public static Paragraph GetParagraph(this OpenXmlElement xmlElement)
         {
@@ -137,10 +135,9 @@ namespace OpenXmlHelpers.Word
 
         /// <summary>
         /// Removes the merge fields from the containing document and replaces them with the given texts. 
-        /// If the replacement texts are less than the number of fields, the remaining fields are replaced with empty text.
-        /// If the replacement texts are more than the number of fields, the excess texts are ignored.
         /// </summary>
-        /// <param name="replacementTexts">The replacement texts.</param>
+        /// <param name="replacementTexts">The text values to replace the merge fields with</param>
+        /// <param name="removeExcess">Optional value to indicate that excess merge fields are removes instead of replacing with blank values</param>
         public static void ReplaceWithText(this IEnumerable<FieldCode> fields, IEnumerable<string> replacementTexts, bool removeExcess = false)
         {
             if (fields == null || fields.Count() == 0)
