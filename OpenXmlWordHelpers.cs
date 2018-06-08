@@ -103,11 +103,13 @@ namespace OpenXmlHelpers.Word
             Run rSep = rFldCode.NextSibling<Run>();
             Run rText = rSep.NextSibling<Run>();
             Run rEnd = rText.NextSibling<Run>();
+            Run rRight = rEnd.NextSibling<Run>();
 
             rFldCode.Remove();
             rBegin.Remove();
             rSep.Remove();
             rEnd.Remove();
+            rRight.Remove();
 
             Text t = rText.GetFirstChild<Text>();
             if (t != null)
